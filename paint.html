@@ -1,0 +1,67 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="d-flex justify-content-center">
+    <input type="number" id="myinput"></input>
+    <button class="bg-danger rounded"id="red">red</button>
+
+    <button class="bg-success rounded"id="green">green</button>
+    <button id=erase>Clear</button>
+    </div>
+    <div class="d-flex justify-content-center">
+    <canvas class="rounded border border-danger" width="600" height="600" id="canvas"></canvas>
+    </div>
+  
+    
+    <script>
+        let brushinput = document.getElementById("myinput")
+        let redbutton = document.getElementById("red")
+        let greenbutton = document.getElementById("green")
+        let clear=document.getElementById("erase")
+        let mycanvas = document.getElementById("canvas")
+        let brush = mycanvas.getContext("2d")
+        let isdrawing = false
+        brush.fillStyle = "yellow"
+        brush.fillRect(0, 0, 600, 600)
+        function printclick(mouse) {
+            console.log("somone clicked")
+            isdrawing = true
+            brush.beginPath()
+            brush.moveTo(mouse.offsetX, mouse.offsetY)
+        }
+        function printmove(mouse) {
+            if (isdrawing == true) {
+                console.log("Someone moved")
+                brush.lineTo(mouse.offsetX, mouse.offsetY)
+                brush.stroke()
+            }
+        }
+        function Erasecanvas()
+        {
+brush.clearRect(0,0,600,600)
+        }
+        function changetogreen() {
+            brush.strokeStyle = 'green'
+        }
+        function changetored() {
+            brush.strokeStyle = 'red'
+        }
+        function changesize() {
+            brush.lineWidth = brushinput.value
+        }
+        function stopdrawing() {
+            isdrawing = false
+        }
+        mycanvas.addEventListener("mousedown", printclick)
+        mycanvas.addEventListener("mousemove", printmove)
+        brushinput.addEventListener("input", changesize)
+        redbutton.addEventListener("click", changetored)
+        greenbutton.addEventListener("click", changetogreen)
+        clear.addEventListener("click", Erasecanvas)
+        
+        mycanvas.addEventListener("mouseout", stopdrawing)
+    </script>
+
+</body>

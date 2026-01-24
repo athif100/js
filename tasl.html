@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Task App</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            color: #333;
+        }
+
+        /* App Wrapper */
+        .app-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 { margin-top: 0; color: #2d3436; }
+
+        /* Input Field Styling */
+        input#input {
+            width: 70%;
+            padding: 10px;
+            border: 2px solid #dfe6e9;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input#input:focus {
+            border-color: #0984e3;
+        }
+
+        /* Button Styling */
+        button#addbutton {
+            padding: 10px 15px;
+            background-color: #00b894;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button#Clearbutton {
+            padding: 10px 15px;
+            background-color: #b80000;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button#addbutton:hover {
+            background-color: #009470;
+        }
+
+        /* Task List Container */
+        #container {
+            margin-top: 20px;
+        }
+
+        /* Individual Task Paragraphs */
+        #container p {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #00b894;
+            margin-bottom: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-card">
+        <h2>My Tasks</h2>
+        <input id="input" placeholder="Type a task...">
+        <button id="addbutton">Add</button>
+         <button id="Clearbutton">Clear</button>
+        
+        <div id="container">
+            </div>
+    </div>
+
+    <script>
+        // Your original JavaScript remains untouched
+        let alltasks=[]
+        let addbutton = document.getElementById("addbutton")
+        function addtask() {
+            console.log("addtask")
+            let container=document.getElementById("container")
+            let p=document.createElement("p")
+            let input=document.getElementById("input")
+            p.innerText=input.value
+            alltasks.push(input.value)
+            localStorage.setItem("all tasks",alltasks)
+            container.appendChild(p)
+            input.value = ""; // Optional: clears the box after adding
+        }
+        addbutton.addEventListener("click", addtask)
+    </script>
+    
+</body>
+</html>
