@@ -9,9 +9,9 @@ grid-template-columns: 1fr 1fr 1fr;">
         let emojis = ["🎧", "🎹", "🕶️"]
         function makecards() {
             for (let num = 0; num < 6; num += 1) {
-                let num = Math.floor(Math.random() * 3)
+                let picked_num = Math.floor(Math.random() * 3)
                 console.log(num)
-                let pickedemoji = emojis[num]
+                let pickedemoji = emojis[picked_num]
                 console.log(num)
                 let card = document.createElement("div")
                  card.addEventListener('click',show_cards.bind(null,num))
