@@ -1,0 +1,33 @@
+<head></head>
+
+<body id="body">
+    <section id="Section1" style="display: grid;
+grid-template-columns: 1fr 1fr 1fr;">
+
+    </section>
+    <script>
+        let emojis = ["🎧", "🎹", "🕶️"]
+        function makecards() {
+            for (let num = 0; num < 6; num += 1) {
+                let num = Math.floor(Math.random() * 3)
+                console.log(num)
+                let pickedemoji = emojis[num]
+                console.log(num)
+                let card = document.createElement("div")
+                 card.addEventListener('click',show_cards.bind(null,num))
+                card.style = " margin:5px; background-color: orange;width:100px;height:100px; display: flex;justify-content: center;align-items: center;  box-shadow: 0px 10px 10px black;"
+                card.innerHTML = `<p id='${num}' style='display: none'>` + pickedemoji + "</p>"
+                let Section1 = document.getElementById("Section1")
+                Section1.appendChild(card)
+            }
+        }
+        function show_cards(id)
+        {
+            console.log("A card has been clicked")
+            console.log(id)
+            let p=document.getElementById (`${id}`)
+            p.style=""
+        }
+        makecards()
+    </script>
+</body>
